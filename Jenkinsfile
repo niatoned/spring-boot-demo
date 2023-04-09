@@ -1,8 +1,4 @@
 pipeline {
-    environment {
-        DATE = new Date().format('yy.M')
-        TAG = "${DATE}.${BUILD_NUMBER}"
-    }
    agent {
         docker {
             image 'maven:3.8.1-adoptopenjdk-11'
@@ -14,8 +10,13 @@ pipeline {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
-       
-   
+        }
+        
+        stage('Docker Build') {
+            agent any
+          steps {
+            sh 'docker build -t niatoned/spring-boot-demo:latest .'
+          }
         }
     }
 }
