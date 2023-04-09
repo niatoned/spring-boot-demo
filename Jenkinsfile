@@ -14,7 +14,7 @@ pipeline {
         
         stage('Docker Build') {
           steps {
-            sh 'docker build -t niatoned/spring-boot-demo:latest .'
+            docker.build("niatoned/spring-boot-demo:latest")
           }
         }
     }
