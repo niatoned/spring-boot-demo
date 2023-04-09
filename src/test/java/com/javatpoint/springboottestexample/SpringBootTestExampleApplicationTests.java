@@ -1,7 +1,8 @@
 package com.javatpoint.springboottestexample;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-@SpringBootTest(classes = SpringBootTestExampleApplication)
+import com/javapoint/SpringBootTestExampleApplication.java
+@SpringBootTest(classes = SpringBootTestExampleApplication.class)
 class SpringBootTestExampleApplicationTests 
 {
 @Test
