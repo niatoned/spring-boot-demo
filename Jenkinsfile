@@ -25,14 +25,21 @@ pipeline {
         }
       
       stage('Docker Push') {
-    	agent any
-      steps {
-      	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push niatoned/spring-boot-demo:latest'
+         agent any
+         steps {
+            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+             sh 'docker push niatoned/spring-boot-demo:latest'
+           }
+         }
+       }
+      stage('Deploy'){
+            steps {
+                sh "docker stop niatoned/spring-boot-demo | true"
+                sh "docker rm niatoned/spring-boot-demo | true"
+                sh "docker run --name niatoned/spring-boot-demo -d -p 8080:8080 niatoned/spring-boot-demo:latest"
+            }
         }
-      }
-    }
     }
 }
 
