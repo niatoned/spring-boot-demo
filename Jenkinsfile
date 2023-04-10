@@ -13,7 +13,7 @@ pipeline {
         }
         
         stage('Docker Build') {
-          agent any
+          agent java-docker-slave
           steps {
              script {
                docker.build("niatoned/spring-boot-demo:latest")
