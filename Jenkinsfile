@@ -38,7 +38,7 @@ pipeline {
             steps {
                 sh "docker stop niatoned/spring-boot-demo | true"
                 sh "docker rm niatoned/spring-boot-demo | true"
-                sh "docker run --name niatoned/spring-boot-demo -d -p 8080:8080 niatoned/spring-boot-demo:latest"
+                sh "docker run --name spring-boot-demo -d -p 8080:8080 niatoned/spring-boot-demo:latest"
             }
         }
     }
