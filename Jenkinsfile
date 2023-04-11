@@ -34,6 +34,7 @@ pipeline {
          }
        }
       stage('Deploy'){
+         agent any
             steps {
                 sh "docker stop niatoned/spring-boot-demo | true"
                 sh "docker rm niatoned/spring-boot-demo | true"
